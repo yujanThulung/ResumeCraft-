@@ -1,5 +1,6 @@
 import { body, validationResult } from "express-validator";
 import User from "../models/index.model.js";
+import jwt from "jsonwebtoken";
 
 export const validateSignup = [
     body("name").notEmpty().withMessage("Name is required"),

@@ -1,1 +1,1 @@
-export { signup,signin } from './user.controller.js'; 
+export { signup,signin,logout } from './user.controller.js'; 

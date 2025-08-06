@@ -63,24 +63,46 @@ export const signin = async (req, res) => {
 
         const isPasswordCorrect = await bcrypt.compare(password, user.password);
 
-        if(!isPasswordCorrect){
-            return res.status(400).json(
-                {
-                    success: false,
-                    message: "Incorrect password"
-                }
-            )
+        if (!isPasswordCorrect) {
+            return res.status(400).json({
+                success: false,
+                message: "Incorrect password",
+            });
         }
 
         generateTokenAndCookie(res, user._id),
             res.status(200).json({
                 success: true,
                 message: "User logged in successfully",
-        });
+            });
     } catch (error) {
         console.log("Error logging in user", error.message);
         res.status(500).json({
             message: "Error logging in user",
+            error: error.message,
+        });
+    }
+};
+
+export const logout = async (req, res) => {
+    try {
+        res.cookie("token", null, {
+            maxAge: 0,
+            httpOnly: true,
+            secure: process.env.NODE_ENV !== "development",
+            sameSite: "strict",
+        });
+        res.status(200).json({
+            success: true,
+            message: "User logged out successfully",
+        });
+    } catch (error) {
+        console.log("Error logging out user", error.message);
+        res.status(500).json({
+            message: "Error logging out user",
+            error: error.message,
+            success: false,
+            message: "Error logging out user",
             error: error.message,
         });
     }

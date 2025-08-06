@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
 
 
 import connectDB from './config/db.js';
@@ -9,13 +10,12 @@ import { user } from "./routes/index.route.js";
 
 dotenv.config();
 
-
 const app = express();
 
 await connectDB();
 
 
-
+app.use(cookieParser());
 app.use(express.json());
 app.use(cors());
 
