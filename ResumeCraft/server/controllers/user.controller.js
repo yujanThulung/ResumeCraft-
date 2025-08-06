@@ -1,5 +1,6 @@
-import User from "../models/index.model.js";
 import bcrypt from "bcryptjs";
+import User from "../models/index.model.js";
+import { uploadToCloudinary } from "../utils/uploadToCloudinary.js";
 import { generateTokenAndCookie } from "../utils/generateTokenAndCookie.js";
 
 export const signup = async (req, res) => {
@@ -103,6 +104,90 @@ export const logout = async (req, res) => {
             error: error.message,
             success: false,
             message: "Error logging out user",
+            error: error.message,
+        });
+    }
+};
+
+export const updateUser = async (req, res) => {
+    const user = await User.findById(req.user.userId).select("+password");
+
+    if (!user) {
+        return res.status(404).json({
+            success: false,
+            message: "User not found",
+        });
+    }
+    const { name, email, currentPassword, newPassword, passwordConfirm } = req.body;
+
+    try {
+        if (name) {
+            user.name = name;
+        }
+
+        if (email !== user.email) {
+            const emailExists = await User.findOne({ email });
+            if (emailExists) {
+                return res.status(400).json({
+                    success: false,
+                    message: "Email already in use by another user",
+                });
+            }
+        }
+
+        if (newPassword !== passwordConfirm) {
+            throw new Error("New password and confirm password do not match");
+        }
+
+        const isPasswordCorrect = await bcrypt.compare(currentPassword, user.password);
+        if (!isPasswordCorrect) {
+            return res.status(400).json({
+                success: false,
+                message: "Incorrect current password",
+            });
+        }
+
+        const isNewSameAsOld = await bcrypt.compare(newPassword, user.password);
+        if (isNewSameAsOld) {
+            return res.status(400).json({
+                success: false,
+                message: "New password cannot be the same as the old password",
+            });
+        }
+
+        if (!isPasswordCorrect) {
+            return res.status(400).json({
+                success: false,
+                message: "Incorrect password",
+            });
+        }
+
+        if (req.file) {
+            const result = await uploadToCloudinary(req.file.path);
+            user.profileImage = result.secure_url;
+        }
+
+        user.name = name;
+        user.email = email;
+        user.password = newPassword;
+        user.passwordConfirm = passwordConfirm;
+
+        await user.save();
+
+        res.status(200).json({
+            success: true,
+            message: "User updated successfully",
+            user: {
+                ...user._doc,
+                password: undefined,
+                passwordConfirm: undefined,
+            },
+        });
+    } catch (error) {
+        console.log("Error updating user", error.message);
+        res.status(500).json({
+            success: false,
+            message: "Error updating user",
             error: error.message,
         });
     }
