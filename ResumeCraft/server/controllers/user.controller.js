@@ -125,7 +125,7 @@ export const updateUser = async (req, res) => {
             user.name = name;
         }
 
-        if (email !== user.email) {
+        if (email && email !== user.email) {
             const emailExists = await User.findOne({ email });
             if (emailExists) {
                 return res.status(400).json({
@@ -133,44 +133,59 @@ export const updateUser = async (req, res) => {
                     message: "Email already in use by another user",
                 });
             }
+            user.email = email;
         }
 
-        if (newPassword !== passwordConfirm) {
-            throw new Error("New password and confirm password do not match");
+        if (currentPassword || newPassword || passwordConfirm) {
+            if (!currentPassword || !newPassword || !passwordConfirm) {
+                return res.status(400).json({
+                    success: false,
+                    message:
+                        "To change password, provide current password, new password, and confirm password",
+                });
+            }
         }
 
-        const isPasswordCorrect = await bcrypt.compare(currentPassword, user.password);
-        if (!isPasswordCorrect) {
-            return res.status(400).json({
-                success: false,
-                message: "Incorrect current password",
-            });
-        }
+        if (currentPassword || newPassword || passwordConfirm) {
+            if (!currentPassword || !newPassword || !passwordConfirm) {
+                return res.status(400).json({
+                    success: false,
+                    message:
+                        "To change password, provide current password, new password, and confirm password",
+                });
+            }
 
-        const isNewSameAsOld = await bcrypt.compare(newPassword, user.password);
-        if (isNewSameAsOld) {
-            return res.status(400).json({
-                success: false,
-                message: "New password cannot be the same as the old password",
-            });
-        }
+            if (newPassword !== passwordConfirm) {
+                return res.status(400).json({
+                    success: false,
+                    message: "New password and confirm password do not match",
+                });
+            }
 
-        if (!isPasswordCorrect) {
-            return res.status(400).json({
-                success: false,
-                message: "Incorrect password",
-            });
+            const isPasswordCorrect = await bcrypt.compare(currentPassword, user.password);
+            if (!isPasswordCorrect) {
+                return res.status(400).json({
+                    success: false,
+                    message: "Incorrect current password",
+                });
+            }
+
+            const isNewSameAsOld = await bcrypt.compare(newPassword, user.password);
+            if (isNewSameAsOld) {
+                return res.status(400).json({
+                    success: false,
+                    message: "New password cannot be the same as the old password",
+                });
+            }
+
+            user.password = newPassword;
+            user.passwordConfirm = passwordConfirm;
         }
 
         if (req.file) {
             const result = await uploadToCloudinary(req.file.path);
             user.profileImage = result.secure_url;
         }
-
-        user.name = name;
-        user.email = email;
-        user.password = newPassword;
-        user.passwordConfirm = passwordConfirm;
 
         await user.save();
 
