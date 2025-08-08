@@ -1,15 +1,15 @@
 import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 
-import { Navbar } from "./components";
+import LandingPage from "./pages/LandingPage";
 
-import LoginPage from "../pages/LoginPage";
-import RegisterPage from "../pages/RegisterPage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
 
 function App() {
     return (
         <>
-            <Navbar />
+            <LandingPage />
             <Routes>
                 <Route path="login" element={<LoginPage />} />
                 <Route path="register" element={<RegisterPage />} />
