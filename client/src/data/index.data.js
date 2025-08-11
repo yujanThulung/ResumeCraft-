@@ -1,2 +1,2 @@
 export {services} from './serviceData';
-// export {features} from './featuresData';
+export {templates} from './template.data';

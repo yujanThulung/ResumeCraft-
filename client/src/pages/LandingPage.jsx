@@ -1,5 +1,5 @@
 import React from "react";
-import { HeroSection, Navbar, OurService, ResumeOptimization } from '../container/index';
+import { HeroSection, Navbar, OurService, ResumeOptimization,TemplatesPreview } from '../container/index';
 
 const LandingPage = () => {
     return (
@@ -8,6 +8,7 @@ const LandingPage = () => {
             <HeroSection/>
             <OurService />
             <ResumeOptimization/>
+            <TemplatesPreview />
         </div>
     );
 };
