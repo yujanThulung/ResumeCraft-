@@ -5,7 +5,7 @@ import { OfferCard, Button } from "../../components/index";
 
 const OurService = () => {
     return (
-        <motion.div className="bg-gradient-to-br  from-emerald-500 to-cyan-900 via-cyan-800 animate-gradient  py-12 border-box w-full px-44 sm:px-10 sm:items-center md:px-20 lg:px-40">
+        <motion.div className="bg-gradient-to-br  from-emerald-500 to-cyan-900 via-cyan-800 animate-gradient  py-32 border-box w-full px-44 sm:px-10 sm:items-center md:px-20 lg:px-40">
             <div className="max-w-full mx-auto flex h-full justify-between items-center gap-18 px-8 sm:flex-col-reverse  md:flex-row lg:flex-row ">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}

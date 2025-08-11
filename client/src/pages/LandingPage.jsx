@@ -1,5 +1,5 @@
 import React from "react";
-import { HeroSection, Navbar, OurService } from '../container/index';
+import { HeroSection, Navbar, OurService, ResumeOptimization } from '../container/index';
 
 const LandingPage = () => {
     return (
@@ -7,6 +7,7 @@ const LandingPage = () => {
             <Navbar />
             <HeroSection/>
             <OurService />
+            <ResumeOptimization/>
         </div>
     );
 };
