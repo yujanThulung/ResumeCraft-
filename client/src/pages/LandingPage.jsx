@@ -1,11 +1,15 @@
 import React from "react";
-import { HeroSection, Navbar } from '../container/index';
+import { Footer, HeroSection, Navbar, OurService, ResumeOptimization,TemplatesPreview } from '../container/index';
 
 const LandingPage = () => {
     return (
-        <div className="h-screen px-6">
+        <div className="scroll-smooth ">
             <Navbar />
             <HeroSection/>
+            <OurService />
+            <ResumeOptimization/>
+            <TemplatesPreview />
+            <Footer/>
         </div>
     );
 };
