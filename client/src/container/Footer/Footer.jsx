@@ -17,13 +17,13 @@ const Footer = () => {
                 </div>
 
                 <nav className="flex space-x-8 text-sm">
-                    <a href="#about" className="hover:text-white transition">
+                    <a href="#about" className="hover:text-emerald-600 transition">
                         About
                     </a>
-                    <a href="#contact" className="hover:text-white transition">
+                    <a href="#contact" className="hover:text-emerald-600 transition">
                         Contact
                     </a>
-                    <a href="#privacy" className="hover:text-white transition">
+                    <a href="#privacy" className="hover:hover:text-emerald-600 transition">
                         Privacy Policy
                     </a>
                 </nav>
@@ -34,7 +34,7 @@ const Footer = () => {
                         target="_blank"
                         rel="noreferrer"
                         aria-label="Facebook"
-                        className="hover:text-white transition"
+                        className="hover:text-emerald-600 transition"
                     >
                         <FaFacebookF />
                     </a>
@@ -43,7 +43,7 @@ const Footer = () => {
                         target="_blank"
                         rel="noreferrer"
                         aria-label="Twitter"
-                        className="hover:text-white transition"
+                        className="hover:text-emerald-600 transition"
                     >
                         <FaTwitter />
                     </a>
@@ -52,7 +52,7 @@ const Footer = () => {
                         target="_blank"
                         rel="noreferrer"
                         aria-label="LinkedIn"
-                        className="hover:text-white transition"
+                        className="hover:text-emerald-600 transition"
                     >
                         <FaLinkedinIn />
                     </a>
@@ -61,7 +61,7 @@ const Footer = () => {
                         target="_blank"
                         rel="noreferrer"
                         aria-label="Instagram"
-                        className="hover:text-white transition"
+                        className="hover:text-emerald-600 transition"
                     >
                         <FaInstagram />
                     </a>
