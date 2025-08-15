@@ -24,6 +24,7 @@ const RegisterPage = () => {
         setPassword("");
         setConfirmPassword("");
     };
+    
 
     return (
         <div className="fixed inset-0 flex items-center justify-center">
