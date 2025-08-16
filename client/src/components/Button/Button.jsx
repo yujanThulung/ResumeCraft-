@@ -4,6 +4,7 @@ const Button = (props) => {
   return (
      <button
       className={`
+        flex items-center justify-center
         border-2 ${props.bgColor} border-emerald-400 text-gray-950 font-semibold 
         px-4 py-2 rounded-sm
         transition-all duration-300 ease-in-out
