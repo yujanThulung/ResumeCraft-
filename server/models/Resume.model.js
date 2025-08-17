@@ -89,6 +89,31 @@ const resumeSchema = new mongoose.Schema(
             },
         ],
 
+        projects: [
+            {
+                title: String,
+                description: String,
+                link: String,
+            },
+        ],
+
+        achievements: [
+            {
+                title: String,
+                description: String,
+            },
+        ],
+
+        references: [
+            {
+                name: String,
+                email: String,
+                phone: String,
+                relationship: String,
+            },
+        ],
+
+        
         summary: String,
 
         template: {
