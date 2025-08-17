@@ -1,5 +1,7 @@
-import { validateSignup, authenticate } from "./validation.middleware";
-import upload from "./upload.middleware";
+import {validateSignup} from "./validation.middleware.js";
+import {authenticate} from "./authenticate.middleware.js";
+
+import upload from "./upload.middleware.js";
 
 
-export default { validateSignup, authenticate,upload };
+export { validateSignup, authenticate,upload};

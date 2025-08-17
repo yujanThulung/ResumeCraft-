@@ -8,7 +8,7 @@ import{
     logout,
     updateUser
 } from '../controllers/index.controller.js';
-import { authenticate, validateSignup } from '../middleware/validation.middleware.js';
+import { authenticate, validateSignup } from '../middleware/index.middleware.js';
 
 
 
