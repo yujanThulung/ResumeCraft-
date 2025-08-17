@@ -1,19 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "../components";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../features/auth/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const { loading, error, success, user } = useSelector((state) => state.auth);
+
     const handleLogin = (e) => {
         e.preventDefault();
+        console.log(username, password);
+        dispatch(loginUser({ username, password }));
     };
+
+    useEffect(() => {
+        if (success && user) {
+            navigate("/dashboard");
+        }
+    }, [success, user, navigate]);
 
     return (
         <div className="fixed inset-0 flex items-center justify-center">
-            <form 
-            onSubmit={handleLogin}
-            className="w-full max-w-md p-6 shadow-lg rounded-lg bg-emerald-100 ">
+            <form
+                onSubmit={handleLogin}
+                className="w-full max-w-md p-6 shadow-lg rounded-lg bg-emerald-100 "
+            >
                 <h1 className="text-3xl text-center text-gray-900 text-semibold mb-6">Login</h1>
                 <div className="text-center mb-6">
                     <input
@@ -40,8 +57,10 @@ const LoginPage = () => {
                     />
                 </div>
                 <p className="text-center text-gray-900 mt-6">
-                  Don't have an account? <a href ="/register"
-                  className="text-emerald-600 hover:underline">Register</a>
+                    Don't have an account?{" "}
+                    <a href="/register" className="text-emerald-600 hover:underline">
+                        Register
+                    </a>
                 </p>
             </form>
         </div>

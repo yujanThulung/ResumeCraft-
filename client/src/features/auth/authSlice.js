@@ -17,6 +17,20 @@ export const registerUser = createAsyncThunk(
     }
 );
 
+export const loginUser = createAsyncThunk(
+    "auth/loginUser",
+    async (userData, { rejectWithValue }) => {
+        try {
+            const response = await axios.post(`${API_URL}/api/user/signin`, userData, {
+                withCredentials: true,
+            });
+            return response.data;
+        } catch (error) {
+            return rejectWithValue(error.response?.data || { error: "Login failed" });
+        }
+    }
+);
+
 const authSlice = createSlice({
     name: "auth",
     initialState: {
@@ -48,6 +62,24 @@ const authSlice = createSlice({
             .addCase(registerUser.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload.error || "Registration failed";
+            })
+
+            //login
+            .addCase(loginUser.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+
+            .addCase(loginUser.fulfilled, (state, action) => {
+                state.loading = false;
+                state.user = action.payload.user;
+                state.error = null;
+                state.success = true;
+            })
+
+            .addCase(loginUser.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload.error || "Login failed";
             });
     },
 });
