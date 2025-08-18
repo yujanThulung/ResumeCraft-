@@ -115,3 +115,18 @@ export const getResumes = async (req, res) => {
         });
     }
 };
+
+export const getResumeById = async (req, res) => {
+    try {
+        const resume = await Resume.findById(req.params.id);
+        res.status(200).json({
+            success: true,
+            resume,
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+    }
+};
