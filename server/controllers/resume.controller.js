@@ -100,3 +100,18 @@ export const editResume = async (req, res) => {
         });
     }
 };
+
+export const getResumes = async (req, res) => {
+    try {
+        const resumes = await Resume.find({ user: req.user.userId });
+        res.status(200).json({
+            success: true,
+            resumes,
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+    }
+};
