@@ -8,9 +8,9 @@ const OfferCard = ({ icon, text }) => {
                p-5 rounded-md 
                backdrop-blur-md  backdrop-opacity-5shadow-lg"
         >
-            <div className="w-12 h-12 bg-white rounded-md p-1">
+            <div className="flex items-center justify-center w-12 h-12 bg-white rounded-md p-1">
                 {typeof icon === "string" ? (
-                    <img src={icon} alt="" className="w-10 h-auto" />
+                    <img src={icon} alt="" className="w-10 h-auto " />
                 ) : (
                     icon
                 )}
