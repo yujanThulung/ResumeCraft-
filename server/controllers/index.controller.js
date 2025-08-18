@@ -4,5 +4,6 @@ export{
     createResume,
     editResume,
     getResumes,
-    getResumeById 
+    getResumeById,
+    deleteResume, 
 } from './resume.controller.js';
