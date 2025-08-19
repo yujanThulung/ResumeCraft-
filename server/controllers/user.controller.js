@@ -74,6 +74,11 @@ export const signin = async (req, res) => {
         generateTokenAndCookie(res, user._id),
             res.status(200).json({
                 success: true,
+                user: {
+                    ...user._doc,
+                    password: undefined,
+                    passwordConfirm: undefined,
+                },
                 message: "User logged in successfully",
             });
     } catch (error) {
@@ -207,5 +212,3 @@ export const updateUser = async (req, res) => {
         });
     }
 };
-
-
