@@ -5,7 +5,7 @@ import { loginUser } from "../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
-    const [username, setUserName] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const dispatch = useDispatch();
@@ -15,8 +15,8 @@ const LoginPage = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        console.log(username, password);
-        dispatch(loginUser({ username, password }));
+        console.log(email, password);
+        dispatch(loginUser({ email, password }));
     };
 
     useEffect(() => {
@@ -35,9 +35,9 @@ const LoginPage = () => {
                 <div className="text-center mb-6">
                     <input
                         type="text"
-                        placeholder="Username"
-                        value={username}
-                        onChange={(e) => setUserName(e.target.value)}
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         className="border p-2 rounded mb-4 w-full focus:outline-none focus:ring-1 focus:ring-emerald-500"
                     />
                     <input
