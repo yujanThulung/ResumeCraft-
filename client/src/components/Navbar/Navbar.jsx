@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { logo } from "../../../assets/index.assets";
-import { Button } from "../../../components/index";
+import { logo } from "../../assets/index.assets";
+import { Button } from "../index";
 import { FiMenu, FiX } from "react-icons/fi";
 
 import { useSelector } from "react-redux";
@@ -13,7 +13,7 @@ const navLinks = [
     { name: "Create Cover Letter", path: "/cover-letter" },
 ];
 
-const NavBar = () => {
+const NavBar = ({ style }) => {
     const user = useSelector((state) => state.auth.user);
     const navigate = useNavigate();
 
@@ -21,15 +21,13 @@ const NavBar = () => {
 
     const visibleLinks = user ? navLinks.filter((link) => link.path == "Home") : navLinks;
     return (
-        <nav className="fixed top-0 left-0 w-full z-50 bg-green-100  shadow-md">
+        <nav className={` ${style} top-0 left-0 w-full bg-green-100  shadow-md`}>
             <div className="flex items-center justify-between px-36 py-2">
-                {user && (
-                    <div className="flex item-center">
-                        <Link to="/">
-                            <img src={logo} alt="logo" className="w-60" />
-                        </Link>
-                    </div>
-                )}
+                <div className="flex item-center">
+                    <Link to="/">
+                        <img src={logo} alt="logo" className="w-60" />
+                    </Link>
+                </div>
 
                 <div className="md:hidden">
                     <button onClick={() => setIsOpen(!isOpen)} className="focus:outline-none">

@@ -1,14 +1,14 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { checkAuth } from "./features/auth/authSlice";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { LandingPage, LoginPage, RegisterPage, DashboardPage } from "./pages/index.pages.jsx";
+import { LandingPage, LoginPage, RegisterPage, DashboardPage, PageNotfoundPage } from "./pages/index.pages.jsx";
+
 import ProtectedRoute from "./routes/ProtectedRoute.jsx";
-import { useDispatch } from "react-redux";
 
-import { checkAuth } from "./features/auth/authSlice";
-
-import { useEffect } from "react";
 
 function App() {
     const dispatch = useDispatch();
@@ -44,10 +44,9 @@ function App() {
                             <DashboardPage />
                         </ProtectedRoute>
                     }
-                >
-                    <Route index element={<Navigate to="/dashboard" />} />
-                    <Route path="dashboard" element={<Navigate to="/dashboard" />} />
-                </Route>
+                />
+
+                <Route path="*" element={<PageNotfoundPage />} />
             </Routes>
         </>
     );

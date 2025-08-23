@@ -1,4 +1,4 @@
-export {default as Navbar} from "./LandingPage/Navbar/Navbar";
+
 export {default as HeroSection} from "./LandingPage/Herosection/Herosection";
 export {default as OurService} from './LandingPage/OurService/OurService';
 export {default as ResumeOptimization} from './LandingPage/ResumeOptimization/ResumeOptimization'
@@ -8,6 +8,7 @@ export {default as Footer} from './LandingPage/Footer/Footer'
 
 
 
-// export {default as Dashboard} from './DashBoard/Dashboard/Dashboard'
+export {default as DashboardHome} from './Dashboard/DashboardHome/DashboardHome'
+export {default as Resumes} from './Dashboard/Resumes/Resumes'
 // export {default as DashboardNavbar} from './DashBoard/DashboardNavbar/DashboardNavbar'
-// export {default as Sidebar} from './DashBoard/Sidebar/Sidebar' 
+export {default as Sidebar} from './Dashboard/Sidebar/Sidebar'
