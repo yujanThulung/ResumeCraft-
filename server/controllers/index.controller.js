@@ -1,4 +1,10 @@
-export { signup,signin,logout,updateUser } from './user.controller.js'; 
+export { 
+    signup,
+    signin,
+    logout,
+    updateUser,
+    checkAuth,
+ } from './user.controller.js'; 
 
 export{
     createResume,
@@ -6,4 +12,5 @@ export{
     getResumes,
     getResumeById,
     deleteResume, 
+    
 } from './resume.controller.js';

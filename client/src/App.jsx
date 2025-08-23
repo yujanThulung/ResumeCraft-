@@ -4,7 +4,19 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { LandingPage, LoginPage, RegisterPage, DashboardPage } from "./pages/index.pages.jsx";
 import ProtectedRoute from "./routes/ProtectedRoute.jsx";
+import { useDispatch } from "react-redux";
+
+import { checkAuth } from "./features/auth/authSlice";
+
+import { useEffect } from "react";
+
 function App() {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(checkAuth());
+    }, [dispatch]);
+
     return (
         <>
             <ToastContainer
@@ -35,7 +47,6 @@ function App() {
                 >
                     <Route index element={<Navigate to="/dashboard" />} />
                     <Route path="dashboard" element={<Navigate to="/dashboard" />} />
-
                 </Route>
             </Routes>
         </>

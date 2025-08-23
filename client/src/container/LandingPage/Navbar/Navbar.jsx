@@ -15,7 +15,6 @@ const navLinks = [
 
 const NavBar = () => {
     const user = useSelector((state) => state.auth.user);
-    console.log(user);
     const navigate = useNavigate();
 
     const [isOpen, setIsOpen] = useState(false);
@@ -24,11 +23,13 @@ const NavBar = () => {
     return (
         <nav className="fixed top-0 left-0 w-full z-50 bg-green-100  shadow-md">
             <div className="flex items-center justify-between px-36 py-2">
-                <div className="flex item-center">
-                    <Link to="/">
-                        <img src={logo} alt="logo" className="w-60" />
-                    </Link>
-                </div>
+                {user && (
+                    <div className="flex item-center">
+                        <Link to="/">
+                            <img src={logo} alt="logo" className="w-60" />
+                        </Link>
+                    </div>
+                )}
 
                 <div className="md:hidden">
                     <button onClick={() => setIsOpen(!isOpen)} className="focus:outline-none">
@@ -51,9 +52,11 @@ const NavBar = () => {
 
                             <div className="flex flex-col items-center  justify-center">
                                 <div className="w-12 h-12 rounded-full border-1 border-white">
-                                    <img src={user?.profileImage} 
-                                    className="w-full h-full rounded-full object-cover" 
-                                    alt={user.name} />
+                                    <img
+                                        src={user?.profileImage}
+                                        className="w-full h-full rounded-full object-cover"
+                                        alt={user.name}
+                                    />
                                 </div>
                             </div>
                         </div>

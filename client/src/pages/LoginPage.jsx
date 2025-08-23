@@ -20,10 +20,10 @@ const LoginPage = () => {
     };
 
     useEffect(() => {
-        if (success && user) {
+        if (user) {
             navigate("/dashboard");
         }
-    }, [success, user, navigate]);
+    }, [user, navigate]);
 
     return (
         <div className="fixed inset-0 flex items-center justify-center">

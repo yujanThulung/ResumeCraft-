@@ -31,11 +31,26 @@ export const loginUser = createAsyncThunk(
     }
 );
 
+export const checkAuth = createAsyncThunk("auth/checkAuth", async (_, { rejectWithValue }) => {
+    try {
+        const response = await axios.get(`${API_URL}/api/user/checkAuth`, {
+            withCredentials: true,
+            validateStatus: (status) => status < 500,
+        });
+
+        if (response.status === 401) return rejectWithValue({ error: "Unauthorized" });
+
+        return response.data;
+    } catch (error) {
+        return rejectWithValue(error.response?.data || { error: "Something went wrong" });
+    }
+});
+
 const authSlice = createSlice({
     name: "auth",
     initialState: {
         user: null,
-        loading: false,
+        loading: true,
         error: null,
         success: false,
     },
@@ -80,6 +95,25 @@ const authSlice = createSlice({
             .addCase(loginUser.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload.error || "Login failed";
+            })
+
+            //checkAuth
+            .addCase(checkAuth.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+
+            .addCase(checkAuth.fulfilled, (state, action) => {
+                state.loading = false;
+                state.user = action.payload.user;
+                state.error = null;
+                state.success = true;
+            })
+
+            .addCase(checkAuth.rejected, (state, action) => {
+                state.loading = false;
+                state.user = null;
+                state.error = action.payload.error || "Something went wrong";
             });
     },
 });

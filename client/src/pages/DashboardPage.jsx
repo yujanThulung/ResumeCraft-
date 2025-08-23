@@ -1,11 +1,11 @@
 import React from 'react'
-import { Sidebar,Navbar } from '../container/index'
+import { Navbar } from '../container'
+
 
 const DashboardPage = () => {
   return (
     <div>
-      <Navbar />
-      <Sidebar/>
+        <Navbar/>
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "../../components";
-import { heroImage } from "../../assets/index.assets";
+import { Button } from "../../../../components";
+import { heroImage } from "../../../../assets/index.assets";
 
 const Herosection = () => {
     return (

@@ -212,3 +212,23 @@ export const updateUser = async (req, res) => {
         });
     }
 };
+
+export const checkAuth = async (req, res) => {
+    try {
+        const response = await User.findById(req.user.userId).select("+password");
+
+        res.status(200).json({
+            success: true,
+            user: {
+                ...response._doc,
+                password: undefined,
+                passwordConfirm: undefined,
+            },
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: error.message || "Error checking authentication",
+        });
+    }
+};

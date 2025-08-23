@@ -1,12 +1,20 @@
-import React from "react";
 import { Navigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { checkAuth } from "../features/auth/authSlice";
+import { Loader } from "../components";
 
 const ProtectedRoute = ({ children }) => {
-    const { user } = useSelector((state) => state.auth);
+    const dispatch = useDispatch();
+
+    const { user, loading } = useSelector((state) => state.auth);
+
+    if (loading) {
+        return <Loader />;
+    }
 
     if (!user) {
-        return Navigate("/login");
+        return <Navigate to="/login" replace />;
     }
 
     return children;

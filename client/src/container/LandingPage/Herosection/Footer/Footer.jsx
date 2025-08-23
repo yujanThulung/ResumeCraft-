@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from "react-icons/fa";
-import { logo } from "../../assets/index.assets";
+import { logo } from "../../../../assets/index.assets";
 
 const Footer = () => {
     return (
