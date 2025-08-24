@@ -21,11 +21,11 @@ const NavBar = ({ style }) => {
 
     const visibleLinks = user ? navLinks.filter((link) => link.path == "Home") : navLinks;
     return (
-        <nav className={` ${style} top-0 left-0 w-full bg-green-100  shadow-md`}>
-            <div className="flex items-center justify-between px-36 py-2">
+        <nav className="fixed top-0 left-0 w-full z-50 bg-green-100  shadow-md">
+            <div className="flex items-center justify-between sm: px-16 py-2 md: sm:px-20">
                 <div className="flex item-center">
                     <Link to="/">
-                        <img src={logo} alt="logo" className="w-60" />
+                        <img src={logo} alt="logo" className="w-32 md:w-60" />
                     </Link>
                 </div>
 
@@ -74,13 +74,18 @@ const NavBar = ({ style }) => {
             {isOpen && (
                 <>
                     <div
-                        className="fixed inset-0 bg-opacity-30 z-40"
+                        className="fixed inset-0 bg-opacity-30 backdrop-blur-sm backdrop-brightness-50 z-40"
                         onClick={() => setIsOpen(false)}
                     />
 
-                    <div className="fixed top-20 right-4 z-50 w-64 bg-white rounded-xl shadow-lg p-6 flex flex-col gap-4">
+                    <div className="fixed top-0 right-4 z-50 w-64 h-screen bg-white shadow-lg p-6 flex flex-col gap-4">
                         <div className="flex justify-end ">
-                            <button onClick={() => setIsOpen(false)}></button>
+                            <button
+                                onClick={() => setIsOpen(false)}
+                                className="text-gray-600 hover:text-gray-800 focus:outline-none"
+                            >
+                                <FiX size={24} />
+                            </button>
                         </div>
                         {navLinks.map((link) => (
                             <Link

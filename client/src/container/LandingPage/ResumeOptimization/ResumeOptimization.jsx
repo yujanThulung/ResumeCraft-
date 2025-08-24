@@ -29,7 +29,7 @@ const ResumeOptimization = () => {
     ];
 
     return (
-        <section className="py-32 bg-gray-50">
+        <section className=" py-20 md:py-32 bg-gray-50">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -62,7 +62,7 @@ const ResumeOptimization = () => {
                 transition={{ duration: 0.5, delay: 0.4 }}
                 viewport={{ once: true }}
                 ease="easeInOut"
-                className="flex justify-center pt-18"
+                className="flex justify-center pt-18 px-8"
             >
                 <Button text=" Start Optimizing" bgColor="bg-emerald-500 w-sm" />
             </motion.div>
