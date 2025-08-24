@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { templates } from "../../../data/template.data";
 import { FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa";
+import { ResumeTemplateCard } from "../../../components/index";
 
 const TemplatesPreview = () => {
   const scrollRef = useRef(null);
@@ -56,27 +57,11 @@ const TemplatesPreview = () => {
           className="flex gap-8 overflow-x-auto scroll-smooth no-scrollbar snap-x snap-mandatory"
         >
           {templates.map((template) => (
-            <div
-              key={template.id}
-              className="flex-none snap-center w-full sm:w-80 md:w-80 lg:w-96 relative rounded-lg overflow-hidden shadow-lg no-scrol"
-            >
-              <img
-                src={template.image}
-                alt={template.name}
-                className="w-full h-80 object-cover"
-              />
-              <div className="p-4 text-center">
-                <h3 className="font-semibold text-lg text-gray-900">
-                  {template.name}
-                </h3>
-              </div>
-
-              <div className="absolute inset-0 opacity-0 hover:opacity-100 hover:bg-gray-900/80 hover:backdrop-blur-sm transition duration-300 flex items-center justify-center">
-                <button className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600">
-                  Preview Template
-                </button>
-              </div>
-            </div>
+            <ResumeTemplateCard 
+            key={template.id} 
+            name={template.name}
+            image={template.image}
+            width={"sm:70 md:w-80 lg:w-96 "} />
           ))}
         </div>
 

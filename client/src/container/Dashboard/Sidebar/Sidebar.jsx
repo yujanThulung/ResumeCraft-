@@ -4,12 +4,11 @@ import { FiChevronDown, FiChevronUp, FiMenu, FiX } from "react-icons/fi";
 import { sections } from "../../../data/index.data.js";
 import { logo } from "../../../assets/index.assets.js";
 
-const Sidebar = () => {
+const Sidebar = ({ collapsed, setCollapsed }) => {
     const [openSections, setOpenSections] = useState({
         resume: true,
         coverLetter: true,
     });
-    const [collapsed, setCollapsed] = useState(false); // ✅ new state for collapse/expand
 
     const toggleSection = (section) => {
         setOpenSections((prev) => ({
@@ -20,8 +19,8 @@ const Sidebar = () => {
 
     return (
         <div
-            className={`p-4 flex flex-col gap-2 bg-green-50 rounded-br-lg min-h-screen transition-all duration-300 
-                ${collapsed ? "w-20" : "w-64"}`}
+            className={`fixed top-0 left-0 h-screen p-4 flex flex-col gap-2 bg-green-50 rounded-br-lg transition-all duration-300 
+    ${collapsed ? "w-20" : "w-72"}`}
         >
             <div className="flex justify-between items-center mb-6">
                 <Link to="/">
@@ -80,7 +79,6 @@ const Sidebar = () => {
                                     ))}
                             </button>
 
-                            {/* Show sub-items only if expanded */}
                             {!collapsed &&
                                 openSections[section.name.toLowerCase().replace(" ", "")] && (
                                     <div className="ml-8 mt-1 space-y-1">

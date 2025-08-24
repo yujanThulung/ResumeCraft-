@@ -1,30 +1,25 @@
-import React from "react";
-import { Routes, Route, Outlet } from "react-router-dom";
-import { Navigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Routes, Route, Navigate, Outlet } from "react-router-dom";
 
 import { Navbar } from "../components";
-import { Sidebar, DashboardHome, Resumes } from "../container";
+import { Sidebar, DashboardHome, Resumes, ResumeBuilder } from "../container";
 
 const DashboardPage = () => {
+    const [collapsed, setCollapsed] = useState(false);
+
     return (
-        <div className="flex flex-row min-h-screen">
-            <div className="hidden md:block w-1/5">
-                <Sidebar />
-            </div>
+        <div className="flex min-h-screen">
+            {/* Sidebar fixed */}
+            <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} />
 
-            <div className="w-full md:w-4/5">
-                <Routes>
-                    <Route index element={<DashboardHome />} />
-                    <Route path="resume" element={<Resumes />} />
-                    {/* <Route path="resume-builder" element={<ResumeBuilder />} />
-                    <Route path="resume-editor" element={<ResumeEditor />} />
-                    <Route path="cover-letter" element={<CoverLetter />} />
-                    <Route path="cover-latter-builder" element={<CoverLetterBuilder />} />
-                    <Route path="cover-letter-editor" element={<CoverLetterEditor />} />
-                    <Route path="profile" element={<Profile />} /> */}
-
-                    <Route path="*" element={<Navigate to="/dashboard" />} />
-                </Routes>
+            {/* Main content adjusts based on sidebar width */}
+            <div
+                className={`flex-1 flex flex-col overflow-hidden transition-all duration-300
+                ${collapsed ? "ml-20" : "ml-72"}`}
+            >
+                <main className="flex-1 overflow-y-auto p-4">
+                    <Outlet />
+                </main>
             </div>
         </div>
     );

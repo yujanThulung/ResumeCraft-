@@ -4,11 +4,21 @@ import { checkAuth } from "./features/auth/authSlice";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-import { LandingPage, LoginPage, RegisterPage, DashboardPage, PageNotfoundPage } from "./pages/index.pages.jsx";
-
 import ProtectedRoute from "./routes/ProtectedRoute.jsx";
 
+import {
+    LandingPage,
+    LoginPage,
+    RegisterPage,
+    DashboardPage,
+    PageNotfoundPage,
+} from "./pages/index.pages.jsx";
+
+import { 
+    DashboardHome, 
+    Resumes, 
+    ResumeBuilder 
+} from "./container/index.js";
 
 function App() {
     const dispatch = useDispatch();
@@ -44,7 +54,11 @@ function App() {
                             <DashboardPage />
                         </ProtectedRoute>
                     }
-                />
+                >
+                    <Route index element={<DashboardHome />} />
+                    <Route path="resumes" element={<Resumes />} />
+                    <Route path="resume-builder" element={<ResumeBuilder />} />
+                </Route>
 
                 <Route path="*" element={<PageNotfoundPage />} />
             </Routes>
