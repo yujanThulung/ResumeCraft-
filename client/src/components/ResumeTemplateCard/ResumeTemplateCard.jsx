@@ -6,12 +6,12 @@ const ResumeTemplateCard = ({ id, name, image, onClick, width, selected }) => {
         <div
             key={id}
             onClick={onClick}
-            className={`flex-none snap-center  ${width}  rounded-lg relative overflow-hidden shadow-lg no-scroll ${
+            className={`flex-none snap-center  ${width}  rounded-lg relative overflow-hidden shadow-md no-scroll ${
                 selected ? "border-green-500 border-2" : "border border-transparent"
             }`}
         >
             <div className="relative group">
-                <img src={image} alt={name} className="w-full h-80 object-cover" />
+                <img src={image} alt={name} className="w-full h-48 object-cover" />
                 <div className="absolute inset-0 opacity-0 hover:opacity-50 group-hover:bg-gray-900/80 group-hover:backdrop-blur-sm transition duration-300 flex items-center justify-center">
                     {" "}
                 </div>

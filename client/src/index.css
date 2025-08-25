@@ -25,3 +25,28 @@ body {
 
 
 
+
+/* global.css or index.css */
+.a4 {
+  width: 210mm;       /* A4 width */
+  height: 297mm;      /* A4 height */
+  background: white;  
+  padding: 20mm;      /* inner spacing */
+  margin: auto;       /* center horizontally */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  /* For printing */
+  page-break-after: always;
+}
+
+@media print {
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .a4 {
+    box-shadow: none;
+    margin: 0;
+  }
+}
+

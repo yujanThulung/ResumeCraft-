@@ -33,8 +33,8 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
 
     return (
         <motion.div
-            className={`fixed top-0 left-0 h-screen p-4 flex flex-col gap-2 bg-green-50 rounded-br-lg transition-all duration-300 
-    ${collapsed ? "w-20" : "w-72"}`}
+            className={`fixed top-0 left-0 h-screen p-4 flex flex-col gap-2 bg-green-100 rounded-br-lg transition-all duration-300  shadow-lg 
+    ${collapsed ? "w-20" : "w-56"}`}
         >
             <div className="flex justify-between items-center mb-6">
                 <Link to="/">

@@ -10,13 +10,11 @@ const DashboardPage = () => {
 
     return (
         <div className="flex min-h-screen">
-            {/* Sidebar fixed */}
             <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} />
 
-            {/* Main content adjusts based on sidebar width */}
             <div
                 className={`flex-1 flex flex-col overflow-hidden transition-all duration-300
-                ${collapsed ? "ml-20" : "ml-72"}`}
+                ${collapsed ? "ml-20" : "ml-54"}`}
             >
                 <main className="flex-1 overflow-y-auto p-4">
                     <Outlet />
