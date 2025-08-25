@@ -7,6 +7,7 @@ import { Sidebar, DashboardHome, Resumes, ResumeBuilder } from "../container";
 const DashboardPage = () => {
     const [collapsed, setCollapsed] = useState(false);
 
+
     return (
         <div className="flex min-h-screen">
             {/* Sidebar fixed */}

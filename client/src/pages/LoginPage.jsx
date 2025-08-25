@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "../components";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../features/auth/authSlice";
+import { loginUser } from "../features/authSlice";
 import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {

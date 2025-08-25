@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { AnimatePresence, motion } from "framer-motion";
+
 import { FiChevronDown, FiChevronUp, FiMenu, FiX } from "react-icons/fi";
 import { sections } from "../../../data/index.data.js";
 import { logo } from "../../../assets/index.assets.js";
+import { toggleTemplates } from "../../../features/uiSlice.js";
 
 const Sidebar = ({ collapsed, setCollapsed }) => {
+    const dispatch = useDispatch();
     const [openSections, setOpenSections] = useState({
         resume: true,
         coverLetter: true,
@@ -17,8 +22,17 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
         }));
     };
 
+    const showTemplates = useSelector((state) => state.ui.showTemplates);
+
+    const handleClick = (item) => {
+        if (item.id == 2) {
+            dispatch(toggleTemplates());
+        } else {
+        }
+    };
+
     return (
-        <div
+        <motion.div
             className={`fixed top-0 left-0 h-screen p-4 flex flex-col gap-2 bg-green-50 rounded-br-lg transition-all duration-300 
     ${collapsed ? "w-20" : "w-72"}`}
         >
@@ -79,14 +93,22 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
                                     ))}
                             </button>
 
-                            {!collapsed &&
-                                openSections[section.name.toLowerCase().replace(" ", "")] && (
-                                    <div className="ml-8 mt-1 space-y-1">
-                                        {section.items.map((item, itemIndex) => (
-                                            <NavLink
-                                                key={itemIndex}
-                                                to={item.path}
-                                                className={({ isActive }) => `
+                            <AnimatePresence>
+                                {!collapsed &&
+                                    openSections[section.name.toLowerCase().replace(" ", "")] && (
+                                        <motion.div
+                                            initial={{ opacity: 0, y: 20 }}
+                                            whileInView={{ opacity: 1, y: 0 }}
+                                            transition={{ duration: 0.3 }}
+                                            exit={{ opacity: 0, y: 20 }}
+                                            className="ml-8 mt-1 space-y-1"
+                                        >
+                                            {section.items.map((item, itemIndex) => (
+                                                <NavLink
+                                                    key={itemIndex}
+                                                    to={item.path}
+                                                    onClick={() => handleClick(item)}
+                                                    className={({ isActive }) => `
                                                     flex items-center gap-3 pl-4 pr-0 py-2 rounded-lg transition text-sm
                                                     ${
                                                         isActive
@@ -94,18 +116,19 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
                                                             : "text-gray-600 hover:bg-gray-100 hover:text-emerald-600"
                                                     }
                                                 `}
-                                            >
-                                                {item.icon}
-                                                <span>{item.name}</span>
-                                            </NavLink>
-                                        ))}
-                                    </div>
-                                )}
+                                                >
+                                                    {item.icon}
+                                                    <span>{item.name}</span>
+                                                </NavLink>
+                                            ))}
+                                        </motion.div>
+                                    )}
+                            </AnimatePresence>
                         </div>
                     )}
                 </div>
             ))}
-        </div>
+        </motion.div>
     );
 };
 

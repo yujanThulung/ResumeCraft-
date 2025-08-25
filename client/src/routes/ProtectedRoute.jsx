@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { checkAuth } from "../features/auth/authSlice";
+import { checkAuth } from "../features/authSlice";
 import { Loader } from "../components";
 
 const ProtectedRoute = ({ children }) => {

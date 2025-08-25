@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Button, Loader } from "../components";
 import { useNavigate } from "react-router-dom";
-import { registerUser } from "../features/auth/authSlice";
+import { registerUser } from "../features/authSlice";
 
 const RegisterPage = () => {
     const [name, setName] = useState("");

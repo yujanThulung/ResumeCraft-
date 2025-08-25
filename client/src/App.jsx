@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { checkAuth } from "./features/auth/authSlice";
+import { checkAuth } from "./features/authSlice.js";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,7 +17,8 @@ import {
 import { 
     DashboardHome, 
     Resumes, 
-    ResumeBuilder 
+    ResumeBuilder,
+    Templates 
 } from "./container/index.js";
 
 function App() {
@@ -57,6 +58,7 @@ function App() {
                 >
                     <Route index element={<DashboardHome />} />
                     <Route path="resumes" element={<Resumes />} />
+                    <Route path ="resume-templates" element={<Templates />} />
                     <Route path="resume-builder" element={<ResumeBuilder />} />
                 </Route>
 
